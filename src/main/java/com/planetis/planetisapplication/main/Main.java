@@ -15,10 +15,9 @@ import com.planetis.planetisapplication.model.ApplicationReceiver;
 public class Main {
 
     public static void main(String[] args) {
-//        ModelController controller = new ModelController();
+        ModelController controller = new ModelController();
 //        controller.read();
-          ApplicationReceiver receiver = new ApplicationReceiver();
-          receiver.connectAndListen();
+          controller.receiver();
           
     }
 }

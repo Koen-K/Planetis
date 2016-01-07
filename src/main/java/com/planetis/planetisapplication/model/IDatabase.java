@@ -16,4 +16,5 @@ public interface IDatabase {
     public void intitialize();
 
     public void save(ArrayList<?> list, String collectionName);
+
 }

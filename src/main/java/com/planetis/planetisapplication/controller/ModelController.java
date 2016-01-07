@@ -5,10 +5,15 @@
  */
 package com.planetis.planetisapplication.controller;
 
+import com.planetis.planetisapplication.model.ApplicationReceiver;
 import com.planetis.planetisapplication.model.Connections;
 import com.planetis.planetisapplication.model.GetConfigPropertyValues;
+import com.planetis.planetisapplication.model.IRijksdriehoekComponent;
+import com.planetis.planetisapplication.model.Positions;
+import com.planetis.planetisapplication.model.RijksdriehoekComponent;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
  *
@@ -35,5 +40,13 @@ public class ModelController {
 
         return list;
     }
+    
+    public void receiver(){
+        ApplicationReceiver receiver = new ApplicationReceiver();
+          receiver.connectAndListen();
+          
+    }
+    
+
 
 }

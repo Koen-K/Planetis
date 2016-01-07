@@ -24,6 +24,11 @@ public class Positions extends BaseEntity implements IEntity {
     private String numSatellites;
     private String hdop;
     private String quality;
+    private IRijksdriehoekComponent converter;
+
+    public Positions() {
+        this.converter = new RijksdriehoekComponent();
+    }
 
     /**
      *
@@ -169,7 +174,7 @@ public class Positions extends BaseEntity implements IEntity {
         this.quality = quality;
     }
 
-    public Positions setAndSplitRow(String[] row, IRijksdriehoekComponent converter) {
+    public Positions setAndSplitRowCSV(String[] row) {
         Positions position = new Positions();
 
         int index = 0;
@@ -213,6 +218,57 @@ public class Positions extends BaseEntity implements IEntity {
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         position.setQuality((String) row[0].subSequence(index, row[0].length()));
+
+        return position;
+    }
+
+    public Positions setAndSplitRowLive(Positions position, String row) {
+
+        int index = 1;
+
+        double rdx = Double.parseDouble((String) row.subSequence(row.indexOf(":") + 2, row.indexOf(",") - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(rdx);
+        System.out.println(index);
+
+        double rdy = Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index)+ 1;
+        System.out.println(rdy);
+        System.out.println(index);
+
+        ArrayList<String> result = converter.convertToLatLong(rdx, rdy);
+        position.setRdx(result.get(0));
+        position.setRdy(result.get(1));
+
+        position.setSpeed((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        position.setCourse((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        position.setNumSatellites((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+
+        position.setHdop((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+
+        position.setQuality((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+
+        position.setDateTime((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+
+        position.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+//        index = row.indexOf(",", index) + 1;
 
         return position;
     }

@@ -1,5 +1,6 @@
 package com.planetis.planetisapplication.model;
 
+import com.planetis.planetisapplication.controller.ModelController;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ public class ApplicationReceiver implements MqttCallback {
 
     public static void main(String[] args) {
         new ApplicationReceiver().connectAndListen();
+
     }
 
     /**
@@ -88,9 +90,15 @@ public class ApplicationReceiver implements MqttCallback {
      * @param message the contents of the actual message
      * @throws Exception
      */
-    public void messageArrived(String topic, MqttMessage message)
-            throws Exception {
+    public void messageArrived(String topic, MqttMessage message) {
         System.out.println(message);
+        System.out.println(topic);
+
+//        if (topic == "POSITIONS") {
+            Positions position = new Positions();
+            position.setAndSplitRowLive(position, message.toString());
+//        }
+
     }
 
     /**
