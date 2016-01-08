@@ -50,8 +50,6 @@ public class Connections extends BaseEntity implements IEntity {
     public void setValue(String value) {
         this.value = value;
     }
-    
-    
 
     public Connections setAndSplitRow(String[] row) {
         Connections connection = new Connections();
@@ -72,6 +70,31 @@ public class Connections extends BaseEntity implements IEntity {
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         connection.setValue((String) row[0].subSequence(index, row[0].length()));
+
+        return connection;
+    }
+
+    public Connections setAndSplitRowLive(Connections connection, String row) {
+
+        int index = 1;
+
+        connection.setPort((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        connection.setValue((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        connection.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        connection.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
         return connection;
     }

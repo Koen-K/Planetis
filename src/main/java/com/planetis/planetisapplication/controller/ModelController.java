@@ -7,7 +7,9 @@ package com.planetis.planetisapplication.controller;
 
 import com.planetis.planetisapplication.model.ApplicationReceiver;
 import com.planetis.planetisapplication.model.Connections;
-import com.planetis.planetisapplication.model.GetConfigPropertyValues;
+import com.planetis.planetisapplication.model.Database;
+import com.planetis.planetisapplication.resources.GetConfigPropertyValues;
+import com.planetis.planetisapplication.model.IDatabase;
 import com.planetis.planetisapplication.model.IRijksdriehoekComponent;
 import com.planetis.planetisapplication.model.Positions;
 import com.planetis.planetisapplication.model.RijksdriehoekComponent;
@@ -22,10 +24,12 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class ModelController {
 
     public GetConfigPropertyValues config;
+    public Database db;
 
     public ModelController() {
         this.config = new GetConfigPropertyValues();
-
+        this.db = new Database();
+        
     }
 
     public ArrayList<Connections> read() {
@@ -42,7 +46,7 @@ public class ModelController {
     }
     
     public void receiver(){
-        ApplicationReceiver receiver = new ApplicationReceiver();
+        ApplicationReceiver receiver = new ApplicationReceiver(db);
           receiver.connectAndListen();
           
     }

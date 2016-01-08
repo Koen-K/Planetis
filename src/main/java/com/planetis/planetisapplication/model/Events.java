@@ -5,6 +5,7 @@
  */
 package com.planetis.planetisapplication.model;
 
+import java.util.ArrayList;
 import org.mongodb.morphia.annotations.Entity;
 
 /**
@@ -70,6 +71,32 @@ public class Events extends BaseEntity implements IEntity {
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         event.setValue((String) row[0].subSequence(index, row[0].length()));
+
+        return event;
+    }
+
+    public Events setAndSplitRowLive(Events event, String row) {
+
+        int index = 1;
+
+        event.setPort((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        event.setValue((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+
+        event.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        
 
         return event;
     }

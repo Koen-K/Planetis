@@ -112,4 +112,64 @@ public class Monitoring extends BaseEntity implements IEntity {
 
         return monitor;
     }
+    
+    public Monitoring setAndSplitRowLive(Monitoring monitor, String row) {
+
+        int index = 1;
+
+        monitor.setUnitID((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setEndTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setType((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setMin((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setMax((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        index = row.indexOf(",", index) + 1;
+        System.out.println(index);
+        
+        monitor.setSum((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+
+        
+//        event.setPort((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+//        index = row.indexOf(",", index) + 1;
+//        System.out.println(index);
+//
+//        event.setValue((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        index = row.indexOf(",", index) + 1;
+//        System.out.println(index);
+//
+//        event.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+//        index = row.indexOf(",", index) + 1;
+//        System.out.println(index);
+//        
+//        event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        
+
+        return monitor;
+    }
 }

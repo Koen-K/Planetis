@@ -15,6 +15,13 @@ public interface IDatabase {
 
     public void intitialize();
 
-    public void save(ArrayList<?> list, String collectionName);
+    public void saveList(ArrayList<?> list, String collectionName);
+    
+    public void saveLivePositions(Positions consumable, String collectionName);
 
+    public void saveLiveConnections(Connections consumable, String collectionName);
+    
+    public void saveLiveMonitoring(Monitoring consumable, String collectionName);
+    
+    public void saveLiveEvents(Events consumable, String collectionName);
 }

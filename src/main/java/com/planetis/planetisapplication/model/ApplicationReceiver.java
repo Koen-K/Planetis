@@ -1,5 +1,6 @@
 package com.planetis.planetisapplication.model;
 
+import com.mongodb.connection.Connection;
 import com.planetis.planetisapplication.controller.ModelController;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
@@ -22,9 +23,18 @@ public class ApplicationReceiver implements MqttCallback {
 
     private String[] topics = {"POSITIONS", "MONITORING", "EVENTS", "CONNECTIONS"};
 
+    public Database db;
+    
+    public ApplicationReceiver() {
+    }
+
     public static void main(String[] args) {
         new ApplicationReceiver().connectAndListen();
 
+    }
+
+    public ApplicationReceiver(Database db) {
+        this.db = db;
     }
 
     /**
@@ -94,11 +104,32 @@ public class ApplicationReceiver implements MqttCallback {
         System.out.println(message);
         System.out.println(topic);
 
-//        if (topic == "POSITIONS") {
+        if (topic.equalsIgnoreCase("POSITIONS")) {
+//            System.out.println("It weurks!");
             Positions position = new Positions();
             position.setAndSplitRowLive(position, message.toString());
-//        }
+            db.saveLivePositions(position, topic);
+        }
 
+        if (topic.equalsIgnoreCase("MONITORING")) {
+//            System.out.println("It weurks!");
+            Monitoring monitor = new Monitoring();
+            monitor.setAndSplitRowLive(monitor, message.toString());
+        }
+
+        if (topic.equalsIgnoreCase("CONNECTIONS")) {
+//            System.out.println("It weurks!");
+            Connections connection = new Connections();
+            connection.setAndSplitRowLive(connection, message.toString());
+        }
+
+        if (topic.equalsIgnoreCase("EVENTS")) {
+//            System.out.println("It weurks!");
+            Events event = new Events();
+            event.setAndSplitRowLive(event, message.toString());
+        }
+
+//        }
     }
 
     /**
