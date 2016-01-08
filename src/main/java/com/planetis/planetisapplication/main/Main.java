@@ -5,8 +5,18 @@
  */
 package com.planetis.planetisapplication.main;
 
+import com.mongodb.DB;
+import com.mongodb.DBObject;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.planetis.planetisapplication.controller.ModelController;
+import com.planetis.planetisapplication.dbmodel.Events;
 import com.planetis.planetisapplication.model.ApplicationReceiver;
+import com.planetis.planetisapplication.resources.Properties;
+import org.bson.Document;
+import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Morphia;
 
 /**
  *
@@ -15,9 +25,14 @@ import com.planetis.planetisapplication.model.ApplicationReceiver;
 public class Main {
 
     public static void main(String[] args) {
+        
         ModelController controller = new ModelController();
-//        controller.read();
-          controller.receiver();
-          
+        controller.receiver();
+        
+        
+
+        
+
+
     }
 }

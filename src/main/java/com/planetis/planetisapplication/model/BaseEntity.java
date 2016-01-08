@@ -20,11 +20,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mongodb.morphia.Morphia;
+import org.mongodb.morphia.annotations.Entity;
 
 /**
  *
  * @author Koen
  */
+
+@Entity
 public class BaseEntity {
 
     public RowListProcessor rowProcessor;

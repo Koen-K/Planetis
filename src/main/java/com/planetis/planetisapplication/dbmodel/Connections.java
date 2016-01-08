@@ -3,9 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.planetis.planetisapplication.model;
+package com.planetis.planetisapplication.dbmodel;
 
+import com.planetis.planetisapplication.model.BaseEntity;
+import com.planetis.planetisapplication.model.IEntity;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  *
@@ -14,6 +17,7 @@ import org.mongodb.morphia.annotations.Entity;
 @Entity
 public class Connections extends BaseEntity implements IEntity {
 
+    @Id
     private String dateTime;
     private String unitID;
     private String port;

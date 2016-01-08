@@ -3,18 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.planetis.planetisapplication.model;
+package com.planetis.planetisapplication.dbmodel;
 
+import com.planetis.planetisapplication.model.BaseEntity;
+import com.planetis.planetisapplication.model.IEntity;
+import com.planetis.planetisapplication.model.IRijksdriehoekComponent;
+import com.planetis.planetisapplication.model.RijksdriehoekComponent;
 import java.util.ArrayList;
+import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Property;
 
 /**
  *
  * @author Koen
  */
-@Entity
+@Entity("positions")
 public class Positions extends BaseEntity implements IEntity {
 
+    @Id
     private String dateTime;
     private String unitID;
     private String rdx;
@@ -222,54 +230,67 @@ public class Positions extends BaseEntity implements IEntity {
         return position;
     }
 
-    public Positions setAndSplitRowLive(Positions position, String row) {
+    public Document setAndSplitRowLive(Positions position, String row) {
 
         int index = 1;
 
         double rdx = Double.parseDouble((String) row.subSequence(row.indexOf(":") + 2, row.indexOf(",") - 1));
         index = row.indexOf(",", index) + 1;
-        System.out.println(rdx);
-        System.out.println(index);
+//        System.out.println(rdx);
+//        System.out.println(index);
 
         double rdy = Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-        index = row.indexOf(",", index)+ 1;
-        System.out.println(rdy);
-        System.out.println(index);
+        index = row.indexOf(",", index) + 1;
+//        System.out.println(rdy);
+//        System.out.println(index);
 
         ArrayList<String> result = converter.convertToLatLong(rdx, rdy);
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
         position.setSpeed((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
-        System.out.println(index);
+//        System.out.println(index);
 
         position.setCourse((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
-        System.out.println(index);
+//        System.out.println(index);
 
         position.setNumSatellites((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
         position.setHdop((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
         position.setQuality((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
 
         position.setDateTime((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
 
         position.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
-        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 //        index = row.indexOf(",", index) + 1;
 
-        return position;
+        return createDoc(position);
+    }
+
+    public Document createDoc(Positions position) {
+        Document doc = new Document("DateTime", getDateTime())
+                .append("UnitId", getUnitID())
+                .append("Rdx", getRdx())
+                .append("Rdy", getRdy())
+                .append("Speed", getSpeed())
+                .append("Course", getCourse())
+                .append("NumSatellites", getNumSatellites())
+                .append("HDOP", getHdop())
+                .append("Quality", getQuality());
+        return doc;
     }
 }

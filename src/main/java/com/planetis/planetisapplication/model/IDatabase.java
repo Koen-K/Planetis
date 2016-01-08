@@ -5,6 +5,10 @@
  */
 package com.planetis.planetisapplication.model;
 
+import com.planetis.planetisapplication.dbmodel.Events;
+import com.planetis.planetisapplication.dbmodel.Connections;
+import com.planetis.planetisapplication.dbmodel.Positions;
+import com.planetis.planetisapplication.dbmodel.Monitoring;
 import java.util.ArrayList;
 
 /**

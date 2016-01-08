@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.planetis.planetisapplication.model;
+package com.planetis.planetisapplication.dbmodel;
 
+import com.planetis.planetisapplication.model.BaseEntity;
+import com.planetis.planetisapplication.model.IEntity;
 import java.util.ArrayList;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
 /**
  *
@@ -93,10 +96,9 @@ public class Events extends BaseEntity implements IEntity {
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
-        
 
         return event;
     }
