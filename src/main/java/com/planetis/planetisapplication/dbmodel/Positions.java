@@ -182,8 +182,7 @@ public class Positions extends BaseEntity implements IEntity {
         this.quality = quality;
     }
 
-    public Positions setAndSplitRowCSV(String[] row) {
-        Positions position = new Positions();
+    public Document setAndSplitRowCSV(Positions position, String[] row) {
 
         int index = 0;
 
@@ -227,7 +226,7 @@ public class Positions extends BaseEntity implements IEntity {
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         position.setQuality((String) row[0].subSequence(index, row[0].length()));
 
-        return position;
+        return createDoc(position);
     }
 
     public Document setAndSplitRowLive(Positions position, String row) {

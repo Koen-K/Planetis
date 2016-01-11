@@ -105,7 +105,7 @@ public class ApplicationReceiver implements MqttCallback {
      * @throws Exception
      */
     public void messageArrived(String topic, MqttMessage message) {
-        controller.liveConvertSave(topic, message);
+        controller.liveConvertSave(topic, message.toString());
     }
 
     /**

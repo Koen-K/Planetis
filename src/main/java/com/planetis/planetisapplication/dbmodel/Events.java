@@ -56,8 +56,7 @@ public class Events extends BaseEntity implements IEntity {
         this.value = value;
     }
 
-    public Events setAndSplitRow(String[] row, int occurences) {
-        Events event = new Events();
+    public Document setAndSplitRowCSV(Events event, String[] row) {
 
         int index = 0;
 
@@ -76,7 +75,7 @@ public class Events extends BaseEntity implements IEntity {
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         event.setValue((String) row[0].subSequence(index, row[0].length()));
 
-        return event;
+        return createDoc(event);
     }
 
     public Document setAndSplitRowLive(Events event, String row) {
@@ -101,16 +100,15 @@ public class Events extends BaseEntity implements IEntity {
         event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
-        
         return createDoc(event);
     }
-    
+
     public Document createDoc(Events event) {
         Document doc = new Document("DateTime", getDateTime())
                 .append("UnitId", getUnitID())
                 .append("Port", getPort())
                 .append("Value", getValue());
-        
+
         return doc;
     }
 }

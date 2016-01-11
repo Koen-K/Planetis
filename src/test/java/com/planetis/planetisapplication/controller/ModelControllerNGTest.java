@@ -72,7 +72,7 @@ public class ModelControllerNGTest {
     public void testLiveConvertSave() {
         System.out.println("liveConvertSave");
         String topic = "";
-        MqttMessage message = null;
+        String message = null;
         ModelController instance = new ModelController();
         instance.liveConvertSave(topic, message);
         // TODO review the generated test code and remove the default call to fail.

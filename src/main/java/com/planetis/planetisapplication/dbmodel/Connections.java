@@ -7,6 +7,7 @@ package com.planetis.planetisapplication.dbmodel;
 
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
+import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -55,8 +56,7 @@ public class Connections extends BaseEntity implements IEntity {
         this.value = value;
     }
 
-    public Connections setAndSplitRow(String[] row) {
-        Connections connection = new Connections();
+    public Document setAndSplitRowCSV(Connections connection, String[] row) {
 
         int index = 0;
 
@@ -75,10 +75,10 @@ public class Connections extends BaseEntity implements IEntity {
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         connection.setValue((String) row[0].subSequence(index, row[0].length()));
 
-        return connection;
+        return createDoc(connection);
     }
 
-    public Connections setAndSplitRowLive(Connections connection, String row) {
+    public Document setAndSplitRowLive(Connections connection, String row) {
 
         int index = 1;
 
@@ -100,7 +100,15 @@ public class Connections extends BaseEntity implements IEntity {
         connection.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
-        return connection;
+        return createDoc(connection);
+    }
+
+    public Document createDoc(Connections connection) {
+        Document doc = new Document("DateTime", getDateTime())
+                .append("UnitId", getUnitID())
+                .append("Port", getPort())
+                .append("Value", getValue());
+        return doc;
     }
 
 }

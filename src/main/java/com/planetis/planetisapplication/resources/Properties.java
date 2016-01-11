@@ -16,6 +16,6 @@ public class Properties {
     public static String dbName = "Planetis1";
     public static String dbUserName;
     public static String dbUserPassword;
-    public static String csvFolderPath;
+    public static String csvFolderPath = "c:/csvFiles/";
 
 }

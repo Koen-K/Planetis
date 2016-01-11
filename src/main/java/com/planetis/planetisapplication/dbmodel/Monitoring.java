@@ -83,8 +83,7 @@ public class Monitoring extends BaseEntity implements IEntity {
         this.sum = sum;
     }
 
-    public Monitoring setAndSplitRow(String[] row) {
-        Monitoring monitor = new Monitoring();
+    public Document setAndSplitRowCSV(Monitoring monitor, String[] row) {
 
         int index = 0;
 
@@ -115,7 +114,7 @@ public class Monitoring extends BaseEntity implements IEntity {
 //            System.out.println(row[0].subSequence(index, row[0].length()));
         monitor.setSum((String) row[0].subSequence(index, row[0].length()));
 
-        return monitor;
+        return createDoc(monitor);
     }
     
     public Document setAndSplitRowLive(Monitoring monitor, String row) {
@@ -126,32 +125,32 @@ public class Monitoring extends BaseEntity implements IEntity {
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setEndTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setType((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setMin((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setMax((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
-        
+
         monitor.setSum((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 

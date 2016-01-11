@@ -15,8 +15,16 @@ import com.planetis.planetisapplication.model.IDatabase;
 import com.planetis.planetisapplication.model.IRijksdriehoekComponent;
 import com.planetis.planetisapplication.dbmodel.Positions;
 import com.planetis.planetisapplication.model.RijksdriehoekComponent;
+import static com.planetis.planetisapplication.resources.Properties.csvFolderPath;
+import com.univocity.parsers.common.processor.RowListProcessor;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javafx.scene.input.KeyCode.T;
 import org.bson.Document;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -37,17 +45,47 @@ public class ModelController {
         this.queue = new ArrayList();
     }
 
-    public ArrayList<Connections> read() {
-        Connections con = new Connections();
-        List<String[]> rows = con.fileToList(Properties.csvFolderPath, "Connections");
-        ArrayList<Connections> list = new ArrayList<>();
-        for (String[] row : rows) {
-            System.out.println(con.setAndSplitRow(row).getDateTime());
-//            list.add(con.setAndSplitRow(row));
+    public void readAndSave() {
 
+        String topic = "POSITIONS";
+
+        Positions position = new Positions();
+        List<String[]> listPositions = position.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listPositions) {
+            Document doc = position.setAndSplitRowCSV(position, row);
+            db.saveDoc(topic, doc);
         }
 
-        return list;
+        topic = "MONITORING";
+
+        Monitoring monitor = new Monitoring();
+        List<String[]> listMonitoring = monitor.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listMonitoring) {
+            Document doc = monitor.setAndSplitRowCSV(monitor, row);
+            db.saveDoc(topic, doc);
+        }
+
+        topic = "Connections";
+
+        Connections connection = new Connections();
+        List<String[]> listConnections = connection.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listConnections) {
+            Document doc = connection.setAndSplitRowCSV(connection, row);
+            db.saveDoc(topic, doc);
+        }
+        
+        topic = "Events";
+
+        Events event = new Events();
+        List<String[]> listEvents = event.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listEvents) {
+            Document doc = event.setAndSplitRowCSV(event, row);
+            db.saveDoc(topic, doc);
+        }
     }
 
     public void receiver() {
@@ -56,29 +94,32 @@ public class ModelController {
 
     }
 
-    public void liveConvertSave(String topic, MqttMessage message) {
-        
+    public void liveConvertSave(String topic, String message) {
+
         if (topic.equalsIgnoreCase("POSITIONS")) {
             Positions position = new Positions();
-            Document doc = position.setAndSplitRowLive(position, message.toString());
+            Document doc = position.setAndSplitRowLive(position, message);
             db.saveDoc(topic, doc);
         }
 
         if (topic.equalsIgnoreCase("MONITORING")) {
             Monitoring monitor = new Monitoring();
-            monitor.setAndSplitRowLive(monitor, message.toString());
+            Document doc = monitor.setAndSplitRowLive(monitor, message);
+            db.saveDoc(topic, doc);
         }
 
         if (topic.equalsIgnoreCase("CONNECTIONS")) {
             Connections connection = new Connections();
-            connection.setAndSplitRowLive(connection, message.toString());
+            Document doc = connection.setAndSplitRowLive(connection, message);
+            db.saveDoc(topic, doc);
         }
 
         if (topic.equalsIgnoreCase("EVENTS")) {
             Events event = new Events();
-            event.setAndSplitRowLive(event, message.toString());
+            Document doc = event.setAndSplitRowLive(event, message);
+            db.saveDoc(topic, doc);
         }
-        
+
     }
 
 }
