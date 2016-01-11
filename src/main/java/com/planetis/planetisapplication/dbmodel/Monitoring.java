@@ -7,6 +7,7 @@ package com.planetis.planetisapplication.dbmodel;
 
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
+import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -117,7 +118,7 @@ public class Monitoring extends BaseEntity implements IEntity {
         return monitor;
     }
     
-    public Monitoring setAndSplitRowLive(Monitoring monitor, String row) {
+    public Document setAndSplitRowLive(Monitoring monitor, String row) {
 
         int index = 1;
 
@@ -154,26 +155,17 @@ public class Monitoring extends BaseEntity implements IEntity {
         monitor.setSum((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
-        
-//        event.setPort((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-//        index = row.indexOf(",", index) + 1;
-//        System.out.println(index);
-//
-//        event.setValue((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
-//        index = row.indexOf(",", index) + 1;
-//        System.out.println(index);
-//
-//        event.setDateTime((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-//        index = row.indexOf(",", index) + 1;
-//        System.out.println(index);
-//        
-//        event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
-        
-
-        return monitor;
+        return createDoc(monitor);
     }
+    public Document createDoc(Monitoring monitoring) {
+        Document doc = new Document("UnitID", getUnitID())
+                .append("beginTime", getBeginTime())
+                .append("endTime", getEndTime())
+                .append("type", getType())
+                .append("min", getMin())
+                .append("max", getMax())
+                .append("sum", getSum());
+        
+        return doc;
+}
 }
