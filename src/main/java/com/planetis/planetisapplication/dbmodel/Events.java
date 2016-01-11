@@ -8,6 +8,7 @@ package com.planetis.planetisapplication.dbmodel;
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
 import java.util.ArrayList;
+import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
@@ -78,7 +79,7 @@ public class Events extends BaseEntity implements IEntity {
         return event;
     }
 
-    public Events setAndSplitRowLive(Events event, String row) {
+    public Document setAndSplitRowLive(Events event, String row) {
 
         int index = 1;
 
@@ -100,6 +101,16 @@ public class Events extends BaseEntity implements IEntity {
         event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
-        return event;
+        
+        return createDoc(event);
+    }
+    
+    public Document createDoc(Events event) {
+        Document doc = new Document("DateTime", getDateTime())
+                .append("UnitId", getUnitID())
+                .append("Port", getPort())
+                .append("Value", getValue());
+        
+        return doc;
     }
 }
