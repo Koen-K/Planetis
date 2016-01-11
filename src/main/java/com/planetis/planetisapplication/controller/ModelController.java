@@ -11,23 +11,10 @@ import com.planetis.planetisapplication.dbmodel.Events;
 import com.planetis.planetisapplication.dbmodel.Monitoring;
 import com.planetis.planetisapplication.model.Database;
 import com.planetis.planetisapplication.resources.Properties;
-import com.planetis.planetisapplication.model.IDatabase;
-import com.planetis.planetisapplication.model.IRijksdriehoekComponent;
 import com.planetis.planetisapplication.dbmodel.Positions;
-import com.planetis.planetisapplication.model.RijksdriehoekComponent;
-import static com.planetis.planetisapplication.resources.Properties.csvFolderPath;
-import com.univocity.parsers.common.processor.RowListProcessor;
-import com.univocity.parsers.csv.CsvParser;
-import com.univocity.parsers.csv.CsvParserSettings;
-import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static javafx.scene.input.KeyCode.T;
 import org.bson.Document;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
  *
