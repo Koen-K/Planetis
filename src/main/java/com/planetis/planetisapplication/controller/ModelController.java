@@ -34,15 +34,35 @@ public class ModelController {
 
     public void readAndSave() {
 
-        String topic = "POSITIONS";
+        String topic = "CONNECTIONS";
 
-        Positions position = new Positions();
-        List<String[]> listPositions = position.fileToList(Properties.csvFolderPath, topic);
-
-        for (String[] row : listPositions) {
-            Document doc = position.setAndSplitRowCSV(position, row);
-            db.saveDoc(topic, doc);
-        }
+//        Connections connection = new Connections();
+//        List<String[]> listConnections = connection.fileToList(Properties.csvFolderPath, topic);
+//
+//        for (String[] row : listConnections) {
+//            Document doc = connection.setAndSplitRowCSV(connection, row);
+//            db.saveDoc(topic, doc);
+//        }
+//        
+//        topic = "EVENTS";
+//
+//        Events event = new Events();
+//        List<String[]> listEvents = event.fileToList(Properties.csvFolderPath, topic);
+//
+//        for (String[] row : listEvents) {
+//            Document doc = event.setAndSplitRowCSV(event, row);
+//            db.saveDoc(topic, doc);
+//        }
+        
+//        topic = "POSITIONS";
+//
+//        Positions position = new Positions();
+//        List<String[]> listPositions = position.fileToList(Properties.csvFolderPath, topic);
+//
+//        for (String[] row : listPositions) {
+//            Document doc = position.setAndSplitRowCSV(position, row);
+//            db.saveDoc(topic, doc);
+//        }
 
         topic = "MONITORING";
 
@@ -54,25 +74,7 @@ public class ModelController {
             db.saveDoc(topic, doc);
         }
 
-        topic = "Connections";
-
-        Connections connection = new Connections();
-        List<String[]> listConnections = connection.fileToList(Properties.csvFolderPath, topic);
-
-        for (String[] row : listConnections) {
-            Document doc = connection.setAndSplitRowCSV(connection, row);
-            db.saveDoc(topic, doc);
-        }
         
-        topic = "Events";
-
-        Events event = new Events();
-        List<String[]> listEvents = event.fileToList(Properties.csvFolderPath, topic);
-
-        for (String[] row : listEvents) {
-            Document doc = event.setAndSplitRowCSV(event, row);
-            db.saveDoc(topic, doc);
-        }
     }
 
     public void receiver() {

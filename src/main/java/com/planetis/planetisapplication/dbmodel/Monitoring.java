@@ -7,6 +7,7 @@ package com.planetis.planetisapplication.dbmodel;
 
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
+import java.text.NumberFormat;
 import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -19,19 +20,19 @@ import org.mongodb.morphia.annotations.Id;
 public class Monitoring extends BaseEntity implements IEntity {
 
     @Id
-    private String unitID;
+    private long unitID;
     private String beginTime;
     private String endTime;
     private String type;
-    private String min;
-    private String max;
+    private double min;
+    private double max;
     private String sum;
 
-    public String getUnitID() {
+    public long getUnitID() {
         return unitID;
     }
 
-    public void setUnitID(String unitID) {
+    public void setUnitID(long unitID) {
         this.unitID = unitID;
     }
 
@@ -59,19 +60,19 @@ public class Monitoring extends BaseEntity implements IEntity {
         this.type = type;
     }
 
-    public String getMin() {
+    public double getMin() {
         return min;
     }
 
-    public void setMin(String min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
-    public String getMax() {
+    public double getMax() {
         return max;
     }
 
-    public void setMax(String max) {
+    public void setMax(double max) {
         this.max = max;
     }
 
@@ -88,7 +89,7 @@ public class Monitoring extends BaseEntity implements IEntity {
         int index = 0;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        monitor.setUnitID((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        monitor.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
@@ -104,11 +105,11 @@ public class Monitoring extends BaseEntity implements IEntity {
         index = row[0].indexOf(";", index) + 1;
 
         //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        monitor.setMin((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        monitor.setMin(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
         //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        monitor.setMax((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        monitor.setMax(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
@@ -116,12 +117,12 @@ public class Monitoring extends BaseEntity implements IEntity {
 
         return createDoc(monitor);
     }
-    
+
     public Document setAndSplitRowLive(Monitoring monitor, String row) {
 
         int index = 1;
 
-        monitor.setUnitID((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1)));
+        monitor.setUnitID(Long.parseLong((String) (row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1))));
         System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
@@ -141,12 +142,12 @@ public class Monitoring extends BaseEntity implements IEntity {
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
 
-        monitor.setMin((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        monitor.setMin(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
 
-        monitor.setMax((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        monitor.setMax(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
@@ -156,6 +157,7 @@ public class Monitoring extends BaseEntity implements IEntity {
 
         return createDoc(monitor);
     }
+
     public Document createDoc(Monitoring monitoring) {
         Document doc = new Document("UnitID", getUnitID())
                 .append("beginTime", getBeginTime())
@@ -164,7 +166,7 @@ public class Monitoring extends BaseEntity implements IEntity {
                 .append("min", getMin())
                 .append("max", getMax())
                 .append("sum", getSum());
-        
+
         return doc;
-}
+    }
 }

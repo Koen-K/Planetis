@@ -5,23 +5,11 @@
  */
 package com.planetis.planetisapplication.model;
 
-import com.mongodb.ConnectionString;
-import com.planetis.planetisapplication.dbmodel.Events;
-import com.planetis.planetisapplication.dbmodel.Connections;
-import com.planetis.planetisapplication.dbmodel.Positions;
-import com.planetis.planetisapplication.dbmodel.Monitoring;
 import com.planetis.planetisapplication.resources.Properties;
-import com.mongodb.DB;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.function.Consumer;
 import org.bson.Document;
-import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
 
 /**

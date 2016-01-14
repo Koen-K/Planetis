@@ -10,9 +10,9 @@ import java.util.ArrayList;
 public class RijksdriehoekComponent implements IRijksdriehoekComponent {
 
     @Override
-    public ArrayList<String> convertToLatLong(double x, double y) {
+    public ArrayList<Double> convertToLatLong(double x, double y) {
 
-        ArrayList<String> result = new ArrayList<>();
+        ArrayList<Double> result = new ArrayList<>();
 
         // The city "Amsterfoort" is used as reference "Rijksdriehoek" coordinate.
         int referenceRdX = 155000;
@@ -62,8 +62,8 @@ public class RijksdriehoekComponent implements IRijksdriehoekComponent {
         //        result = String.Format("{0}, {1}",
         //                latitude.ToString(CultureInfo.InvariantCulture.NumberFormat),
         //                longitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
-        result.add(Double.toString(latitude));
-        result.add(Double.toString(longitude));
+        result.add(latitude);
+        result.add(longitude);
 
         return result;
     }

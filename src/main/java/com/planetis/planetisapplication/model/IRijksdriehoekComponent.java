@@ -20,7 +20,7 @@ public interface IRijksdriehoekComponent {
      * @param y
      * @return
      */
-    public ArrayList<String> convertToLatLong(double x, double y);
+    public ArrayList<Double> convertToLatLong(double x, double y);
 
 }
 

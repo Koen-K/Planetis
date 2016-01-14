@@ -20,9 +20,9 @@ import org.mongodb.morphia.annotations.Id;
 public class Events extends BaseEntity implements IEntity {
 
     private String dateTime;
-    private String unitID;
+    private long unitID;
     private String port;
-    private String value;
+    private int value;
 
     public String getDateTime() {
         return dateTime;
@@ -32,11 +32,11 @@ public class Events extends BaseEntity implements IEntity {
         this.dateTime = dateTime;
     }
 
-    public String getUnitID() {
+    public long getUnitID() {
         return unitID;
     }
 
-    public void setUnitID(String unitID) {
+    public void setUnitID(long unitID) {
         this.unitID = unitID;
     }
 
@@ -48,11 +48,11 @@ public class Events extends BaseEntity implements IEntity {
         this.port = port;
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(int value) {
         this.value = value;
     }
 
@@ -65,15 +65,15 @@ public class Events extends BaseEntity implements IEntity {
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        event.setUnitID((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        event.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        event.setPort((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        event.setPort((String)row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
-        event.setValue((String) row[0].subSequence(index, row[0].length()));
+        event.setValue(Integer.parseInt((String) row[0].subSequence(index, row[0].length())));
 
         return createDoc(event);
     }
@@ -87,7 +87,7 @@ public class Events extends BaseEntity implements IEntity {
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
 
-        event.setValue((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        event.setValue(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
@@ -97,7 +97,7 @@ public class Events extends BaseEntity implements IEntity {
         index = row.indexOf(",", index) + 1;
         System.out.println(index);
 
-        event.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        event.setUnitID(Long.parseLong((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index))));
         System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 
         return createDoc(event);

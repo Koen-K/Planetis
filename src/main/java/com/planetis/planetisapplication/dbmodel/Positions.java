@@ -24,13 +24,13 @@ public class Positions extends BaseEntity implements IEntity {
 
     @Id
     private String dateTime;
-    private String unitID;
-    private String rdx;
-    private String rdy;
-    private String speed;
-    private String course;
-    private String numSatellites;
-    private String hdop;
+    private long unitID;
+    private double rdx;
+    private double rdy;
+    private int speed;
+    private int course;
+    private int numSatellites;
+    private int hdop;
     private String quality;
     private IRijksdriehoekComponent converter;
 
@@ -58,7 +58,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getUnitID() {
+    public long getUnitID() {
         return unitID;
     }
 
@@ -66,7 +66,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param unitID
      */
-    public void setUnitID(String unitID) {
+    public void setUnitID(long unitID) {
         this.unitID = unitID;
     }
 
@@ -74,7 +74,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getRdx() {
+    public double getRdx() {
         return rdx;
     }
 
@@ -82,7 +82,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param rdx
      */
-    public void setRdx(String rdx) {
+    public void setRdx(double rdx) {
         this.rdx = rdx;
     }
 
@@ -90,7 +90,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getRdy() {
+    public double getRdy() {
         return rdy;
     }
 
@@ -98,7 +98,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param rdy
      */
-    public void setRdy(String rdy) {
+    public void setRdy(double rdy) {
         this.rdy = rdy;
     }
 
@@ -106,7 +106,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getSpeed() {
+    public int getSpeed() {
         return speed;
     }
 
@@ -114,7 +114,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param speed
      */
-    public void setSpeed(String speed) {
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
@@ -122,7 +122,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getCourse() {
+    public int getCourse() {
         return course;
     }
 
@@ -130,7 +130,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param course
      */
-    public void setCourse(String course) {
+    public void setCourse(int course) {
         this.course = course;
     }
 
@@ -138,7 +138,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getNumSatellites() {
+    public int getNumSatellites() {
         return numSatellites;
     }
 
@@ -146,7 +146,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param numSatellites
      */
-    public void setNumSatellites(String numSatellites) {
+    public void setNumSatellites(int numSatellites) {
         this.numSatellites = numSatellites;
     }
 
@@ -154,7 +154,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public String getHdop() {
+    public int getHdop() {
         return hdop;
     }
 
@@ -162,7 +162,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param hdop
      */
-    public void setHdop(String hdop) {
+    public void setHdop(int hdop) {
         this.hdop = hdop;
     }
 
@@ -191,7 +191,7 @@ public class Positions extends BaseEntity implements IEntity {
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setUnitID((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
@@ -202,25 +202,25 @@ public class Positions extends BaseEntity implements IEntity {
         double rdy = Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-        ArrayList<String> result = converter.convertToLatLong(rdx, rdy);
+        ArrayList<Double> result = converter.convertToLatLong(rdx, rdy);
 
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setSpeed((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setSpeed(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setCourse((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setCourse(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setNumSatellites((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setNumSatellites(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setHdop((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setHdop(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));
@@ -243,25 +243,25 @@ public class Positions extends BaseEntity implements IEntity {
 //        System.out.println(rdy);
 //        System.out.println(index);
 
-        ArrayList<String> result = converter.convertToLatLong(rdx, rdy);
+        ArrayList<Double> result = converter.convertToLatLong(rdx, rdy);
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
-        position.setSpeed((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        position.setSpeed(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 //        System.out.println(index);
 
-        position.setCourse((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        position.setCourse(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 //        System.out.println(index);
 
-        position.setNumSatellites((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        position.setNumSatellites(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
-        position.setHdop((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
+        position.setHdop(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
@@ -273,7 +273,7 @@ public class Positions extends BaseEntity implements IEntity {
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
 
-        position.setUnitID((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
+        position.setUnitID(Long.parseLong((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
 //        index = row.indexOf(",", index) + 1;
 
