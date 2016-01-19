@@ -53,7 +53,7 @@ public class ConnectionsNGTest {
         String result = instance.getDateTime();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -66,7 +66,7 @@ public class ConnectionsNGTest {
         Connections instance = new Connections();
         instance.setDateTime(dateTime);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -80,7 +80,7 @@ public class ConnectionsNGTest {
         long result = instance.getUnitID();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -93,7 +93,7 @@ public class ConnectionsNGTest {
         Connections instance = new Connections();
         instance.setUnitID(unitID);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -107,7 +107,7 @@ public class ConnectionsNGTest {
         String result = instance.getPort();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,7 +120,7 @@ public class ConnectionsNGTest {
         Connections instance = new Connections();
         instance.setPort(port);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,7 +134,7 @@ public class ConnectionsNGTest {
         int result = instance.getValue();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -147,7 +147,7 @@ public class ConnectionsNGTest {
         Connections instance = new Connections();
         instance.setValue(value);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**

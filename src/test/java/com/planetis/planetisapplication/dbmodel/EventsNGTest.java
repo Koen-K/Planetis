@@ -52,7 +52,7 @@ public class EventsNGTest {
         String result = instance.getDateTime();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,7 +65,7 @@ public class EventsNGTest {
         Events instance = new Events();
         instance.setDateTime(dateTime);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -79,7 +79,7 @@ public class EventsNGTest {
         long result = instance.getUnitID();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,7 +92,7 @@ public class EventsNGTest {
         Events instance = new Events();
         instance.setUnitID(unitID);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,7 +106,7 @@ public class EventsNGTest {
         String result = instance.getPort();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -119,7 +119,7 @@ public class EventsNGTest {
         Events instance = new Events();
         instance.setPort(port);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -133,7 +133,7 @@ public class EventsNGTest {
         int result = instance.getValue();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -146,7 +146,7 @@ public class EventsNGTest {
         Events instance = new Events();
         instance.setValue(value);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
