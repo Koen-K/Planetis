@@ -15,50 +15,50 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Koen
+ * @author Donovan
  */
-public class IRijksdriehoekComponentNGTest {
+public class RijksdriehoekComponentNGTest {
     
-    public IRijksdriehoekComponentNGTest() {
+    public RijksdriehoekComponentNGTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
+        System.out.println("setUpClass is executing");
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+        System.out.println("tearDownClass is executing");
     }
 
     @BeforeMethod
     public void setUpMethod() throws Exception {
+        System.out.println("setUpMethod is executing");
     }
 
     @AfterMethod
     public void tearDownMethod() throws Exception {
+        System.out.println("tearDownMethod is executing");
     }
 
     /**
-     * Test of convertToLatLong method, of class IRijksdriehoekComponent.
+     * Test of convertToLatLong method, of class RijksdriehoekComponent.
      */
-    @Test
+    @Test(priority=1)
     public void testConvertToLatLong() {
         System.out.println("convertToLatLong");
-        double x = 0.0;
-        double y = 0.0;
-        IRijksdriehoekComponent instance = new IRijksdriehoekComponentImpl();
-        ArrayList expResult = null;
+        double x = 122202.0;
+        double y = 487250.0;
+        RijksdriehoekComponent instance = new RijksdriehoekComponent();
+        ArrayList expResult = instance.convertToLatLong(x, y);
+        //Wat ik verwacht terug te krijgen is "52.37214383811702, 4.905597604352241"
         ArrayList result = instance.convertToLatLong(x, y);
+        System.out.println(instance.convertToLatLong(x, y));
+        System.out.println(expResult);
+        System.out.println(result);
         assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-    }
-
-    public class IRijksdriehoekComponentImpl implements IRijksdriehoekComponent {
-
-        public ArrayList<String> convertToLatLong(double x, double y) {
-            return null;
-        }
+        
     }
     
 }
