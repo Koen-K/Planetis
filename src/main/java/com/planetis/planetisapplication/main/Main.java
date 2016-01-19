@@ -27,7 +27,7 @@ public class Main {
     public static void main(String[] args) {
         
         ModelController controller = new ModelController();
-//        controller.receiver();
+        controller.receiver();
         controller.readAndSave();
 
 
