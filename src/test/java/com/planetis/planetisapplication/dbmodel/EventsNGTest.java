@@ -187,14 +187,14 @@ public class EventsNGTest {
         Events event = null;
         Events instance = new Events();
         instance.setDateTime("1234");
-        instance.setUnitID("2345");
+        instance.setUnitID(2345);
         instance.setPort("3456");
-        instance.setValue("4567");
+        instance.setValue(4567);
         Document expResult = new Document()
                 .append("DateTime", "1234")
-                .append("UnitId", "2345")
+                .append("UnitId", Long.parseLong("2345"))
                 .append("Port", "3456")
-                .append("Value", "4567");
+                .append("Value", 4567);
         Document result = instance.createDoc(event);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.

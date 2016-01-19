@@ -320,23 +320,23 @@ public class PositionsNGTest {
         System.out.println("createDoc");
         Positions position = null;
         Positions instance = new Positions();
-        instance.setCourse("678");
+        instance.setCourse(678);
         instance.setDateTime("123");
-        instance.setHdop("890");
-        instance.setNumSatellites("789");
+        instance.setHdop(890);
+        instance.setNumSatellites(789);
         instance.setQuality("901");
-        instance.setRdx("345");
-        instance.setRdy("456");
-        instance.setSpeed("567");
-        instance.setUnitID("234");
+        instance.setRdx(345);
+        instance.setRdy(456);
+        instance.setSpeed(567);
+        instance.setUnitID(234);
         Document expResult = new Document("DateTime", "123")
-                .append("UnitId", "234")
-                .append("Rdx", "345")
-                .append("Rdy", "456")
-                .append("Speed", "567")
-                .append("Course", "678")
-                .append("NumSatellites", "789")
-                .append("HDOP", "890")
+                .append("UnitId", Long.parseLong("234"))
+                .append("Rdx", Double.parseDouble("345"))
+                .append("Rdy", Double.parseDouble("456"))
+                .append("Speed", 567)
+                .append("Course", 678)
+                .append("NumSatellites", 789)
+                .append("HDOP", 890)
                 .append("Quality", "901");
         Document result = instance.createDoc(position);
         assertEquals(result, expResult);
