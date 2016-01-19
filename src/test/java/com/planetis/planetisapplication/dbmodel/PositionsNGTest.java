@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Koen
+ * @author Donovan
  */
 public class PositionsNGTest {
     
@@ -41,7 +41,7 @@ public class PositionsNGTest {
     /**
      * Test of getDateTime method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetDateTime() {
         System.out.println("getDateTime");
         Positions instance = new Positions();
@@ -49,7 +49,7 @@ public class PositionsNGTest {
         String result = instance.getDateTime();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -62,7 +62,7 @@ public class PositionsNGTest {
         Positions instance = new Positions();
         instance.setDateTime(dateTime);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +72,11 @@ public class PositionsNGTest {
     public void testGetUnitID() {
         System.out.println("getUnitID");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getUnitID();
+        long expResult = 0L;
+        long result = instance.getUnitID();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -85,11 +85,11 @@ public class PositionsNGTest {
     @Test
     public void testSetUnitID() {
         System.out.println("setUnitID");
-        String unitID = "";
+        long unitID = 0L;
         Positions instance = new Positions();
         instance.setUnitID(unitID);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -99,11 +99,11 @@ public class PositionsNGTest {
     public void testGetRdx() {
         System.out.println("getRdx");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getRdx();
-        assertEquals(result, expResult);
+        double expResult = 0.0;
+        double result = instance.getRdx();
+        assertEquals(result, expResult, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -112,11 +112,11 @@ public class PositionsNGTest {
     @Test
     public void testSetRdx() {
         System.out.println("setRdx");
-        String rdx = "";
+        double rdx = 0.0;
         Positions instance = new Positions();
         instance.setRdx(rdx);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -126,11 +126,11 @@ public class PositionsNGTest {
     public void testGetRdy() {
         System.out.println("getRdy");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getRdy();
-        assertEquals(result, expResult);
+        double expResult = 0.0;
+        double result = instance.getRdy();
+        assertEquals(result, expResult, 0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -139,11 +139,11 @@ public class PositionsNGTest {
     @Test
     public void testSetRdy() {
         System.out.println("setRdy");
-        String rdy = "";
+        double rdy = 0.0;
         Positions instance = new Positions();
         instance.setRdy(rdy);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -153,11 +153,11 @@ public class PositionsNGTest {
     public void testGetSpeed() {
         System.out.println("getSpeed");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getSpeed();
+        int expResult = 0;
+        int result = instance.getSpeed();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -166,11 +166,11 @@ public class PositionsNGTest {
     @Test
     public void testSetSpeed() {
         System.out.println("setSpeed");
-        String speed = "";
+        int speed = 0;
         Positions instance = new Positions();
         instance.setSpeed(speed);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -180,11 +180,11 @@ public class PositionsNGTest {
     public void testGetCourse() {
         System.out.println("getCourse");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getCourse();
+        int expResult = 0;
+        int result = instance.getCourse();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -193,11 +193,11 @@ public class PositionsNGTest {
     @Test
     public void testSetCourse() {
         System.out.println("setCourse");
-        String course = "";
+        int course = 0;
         Positions instance = new Positions();
         instance.setCourse(course);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -207,11 +207,11 @@ public class PositionsNGTest {
     public void testGetNumSatellites() {
         System.out.println("getNumSatellites");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getNumSatellites();
+        int expResult = 0;
+        int result = instance.getNumSatellites();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -220,11 +220,11 @@ public class PositionsNGTest {
     @Test
     public void testSetNumSatellites() {
         System.out.println("setNumSatellites");
-        String numSatellites = "";
+        int numSatellites = 0;
         Positions instance = new Positions();
         instance.setNumSatellites(numSatellites);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -234,11 +234,11 @@ public class PositionsNGTest {
     public void testGetHdop() {
         System.out.println("getHdop");
         Positions instance = new Positions();
-        String expResult = "";
-        String result = instance.getHdop();
+        int expResult = 0;
+        int result = instance.getHdop();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -247,17 +247,17 @@ public class PositionsNGTest {
     @Test
     public void testSetHdop() {
         System.out.println("setHdop");
-        String hdop = "";
+        int hdop = 0;
         Positions instance = new Positions();
         instance.setHdop(hdop);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
      * Test of getQuality method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetQuality() {
         System.out.println("getQuality");
         Positions instance = new Positions();
@@ -265,7 +265,7 @@ public class PositionsNGTest {
         String result = instance.getQuality();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -278,7 +278,7 @@ public class PositionsNGTest {
         Positions instance = new Positions();
         instance.setQuality(quality);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -287,19 +287,27 @@ public class PositionsNGTest {
     @Test
     public void testSetAndSplitRowCSV() {
         System.out.println("setAndSplitRowCSV");
-        String[] row = null;
+        String[] row = new String[]{"123;234;345;456;567;678;789;890;901"};
         Positions instance = new Positions();
-        Positions expResult = null;
-        Positions result = instance.setAndSplitRowCSV(row);
+        Document expResult = new Document("DateTime", "123")
+                .append("UnitId", Long.parseLong("234"))
+                .append("Rdx", Double.parseDouble("345"))
+                .append("Rdy", Double.parseDouble("456"))
+                .append("Speed", 567)
+                .append("Course", 678)
+                .append("NumSatellites", 789)
+                .append("HDOP", 890)
+                .append("Quality", "901");
+        Document result = instance.setAndSplitRowCSV(instance, row);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
      * Test of setAndSplitRowLive method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetAndSplitRowLive() {
         System.out.println("setAndSplitRowLive");
         Positions position = null;
@@ -309,14 +317,17 @@ public class PositionsNGTest {
         Document result = instance.setAndSplitRowLive(position, row);
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
      * Test of createDoc method, of class Positions.
      */
-    @Test
-    public void testCreateDoc() {
+    /**
+* Test of createDoc method, of class Positions.
+*/
+     @Test
+     public void testCreateDoc() {
         System.out.println("createDoc");
         Positions position = null;
         Positions instance = new Positions();
@@ -340,8 +351,11 @@ public class PositionsNGTest {
                 .append("Quality", "901");
         Document result = instance.createDoc(position);
         assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
+         System.out.println(expResult);
+         System.out.println(result);
+// TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
-    }
+}
+    
     
 }

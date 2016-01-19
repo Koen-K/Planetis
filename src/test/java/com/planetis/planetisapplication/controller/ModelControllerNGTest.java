@@ -5,8 +5,6 @@
  */
 package com.planetis.planetisapplication.controller;
 
-import java.util.ArrayList;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -16,7 +14,7 @@ import org.testng.annotations.Test;
 
 /**
  *
- * @author Koen
+ * @author Donovan
  */
 public class ModelControllerNGTest {
     
@@ -40,17 +38,15 @@ public class ModelControllerNGTest {
     }
 
     /**
-     * Test of read method, of class ModelController.
+     * Test of readAndSave method, of class ModelController.
      */
     @Test
-    public void testRead() {
-        System.out.println("read");
+    public void testReadAndSave() {
+        System.out.println("readAndSave");
         ModelController instance = new ModelController();
-        ArrayList expResult = null;
-        ArrayList result = instance.read();
-        assertEquals(result, expResult);
+        instance.readAndSave();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -62,7 +58,7 @@ public class ModelControllerNGTest {
         ModelController instance = new ModelController();
         instance.receiver();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -72,11 +68,11 @@ public class ModelControllerNGTest {
     public void testLiveConvertSave() {
         System.out.println("liveConvertSave");
         String topic = "";
-        String message = null;
+        String message = "";
         ModelController instance = new ModelController();
         instance.liveConvertSave(topic, message);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
