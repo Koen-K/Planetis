@@ -153,8 +153,8 @@ public class PositionsNGTest {
     public void testGetSpeed() {
         System.out.println("getSpeed");
         Positions instance = new Positions();
-        int expResult = 0;
-        int result = instance.getSpeed();
+        double expResult = 0.0;
+        double result = instance.getSpeed();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -180,8 +180,8 @@ public class PositionsNGTest {
     public void testGetCourse() {
         System.out.println("getCourse");
         Positions instance = new Positions();
-        int expResult = 0;
-        int result = instance.getCourse();
+        double expResult = 0.0;
+        double result = instance.getCourse();
         assertEquals(result, expResult);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -193,7 +193,7 @@ public class PositionsNGTest {
     @Test
     public void testSetCourse() {
         System.out.println("setCourse");
-        int course = 0;
+        double course = 0;
         Positions instance = new Positions();
         instance.setCourse(course);
         // TODO review the generated test code and remove the default call to fail.
@@ -293,8 +293,8 @@ public class PositionsNGTest {
                 .append("UnitId", Long.parseLong("234"))
                 .append("Rdx", Double.parseDouble("47.97894290818148"))
                 .append("Rdy", Double.parseDouble("3.3179859977348243"))
-                .append("Speed", 567)
-                .append("Course", 678)
+                .append("Speed", Double.parseDouble("567"))
+                .append("Course", Double.parseDouble("678"))
                 .append("NumSatellites", 789)
                 .append("HDOP", 890)
                 .append("Quality", "901");
@@ -344,8 +344,8 @@ public class PositionsNGTest {
                 .append("UnitId", Long.parseLong("234"))
                 .append("Rdx", Double.parseDouble("345"))
                 .append("Rdy", Double.parseDouble("456"))
-                .append("Speed", 567)
-                .append("Course", 678)
+                .append("Speed", Double.parseDouble("567"))
+                .append("Course", Double.parseDouble("678"))
                 .append("NumSatellites", 789)
                 .append("HDOP", 890)
                 .append("Quality", "901");
