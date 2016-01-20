@@ -27,8 +27,8 @@ public class Positions extends BaseEntity implements IEntity {
     private long unitID;
     private double rdx;
     private double rdy;
-    private int speed;
-    private int course;
+    private double speed;
+    private double course;
     private int numSatellites;
     private int hdop;
     private String quality;
@@ -106,7 +106,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
@@ -114,7 +114,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param speed
      */
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
@@ -122,7 +122,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @return
      */
-    public int getCourse() {
+    public double getCourse() {
         return course;
     }
 
@@ -130,7 +130,7 @@ public class Positions extends BaseEntity implements IEntity {
      *
      * @param course
      */
-    public void setCourse(int course) {
+    public void setCourse(double course) {
         this.course = course;
     }
 
@@ -187,7 +187,8 @@ public class Positions extends BaseEntity implements IEntity {
         int index = 0;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setDateTime((String) row[0].subSequence(index, row[0].indexOf(";", index)));
+        position.setDateTime((String) row[0]
+                .subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
@@ -208,11 +209,11 @@ public class Positions extends BaseEntity implements IEntity {
         position.setRdy(result.get(1));
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setSpeed(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
+        position.setSpeed(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        position.setCourse(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
+        position.setCourse(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
@@ -247,12 +248,12 @@ public class Positions extends BaseEntity implements IEntity {
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
-        position.setSpeed(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
+        position.setSpeed(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 //        System.out.println(index);
 
-        position.setCourse(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
+        position.setCourse(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
 //        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 //        System.out.println(index);

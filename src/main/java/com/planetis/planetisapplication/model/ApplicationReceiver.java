@@ -6,7 +6,6 @@ import com.planetis.planetisapplication.dbmodel.Positions;
 import com.planetis.planetisapplication.dbmodel.Monitoring;
 import com.mongodb.connection.Connection;
 import com.planetis.planetisapplication.controller.ModelController;
-import com.planetis.planetisapplication.resources.Properties;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,7 @@ import java.util.Arrays;
  */
 public class ApplicationReceiver implements MqttCallback {
 
-    private String url = "tcp://" + Properties.pusherIp + ":" + Properties.pusherPort;
+    private String url = "tcp://145.24.222.106:8883";
     private String clientId = "Receiving";
     private String user = "";
     private String pass = "";

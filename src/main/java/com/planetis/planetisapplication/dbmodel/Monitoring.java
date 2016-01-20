@@ -159,13 +159,13 @@ public class Monitoring extends BaseEntity implements IEntity {
     }
 
     public Document createDoc(Monitoring monitoring) {
-        Document doc = new Document("UnitID", getUnitID())
-                .append("beginTime", getBeginTime())
-                .append("endTime", getEndTime())
-                .append("type", getType())
-                .append("min", getMin())
-                .append("max", getMax())
-                .append("sum", getSum());
+        Document doc = new Document("UnitId", getUnitID())
+                .append("BeginTime", getBeginTime())
+                .append("EndTime", getEndTime())
+                .append("Type", getType())
+                .append("Min", getMin())
+                .append("Max", getMax())
+                .append("Sum", getSum());
 
         return doc;
     }

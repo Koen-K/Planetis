@@ -28,7 +28,7 @@ public class Main {
         
         ModelController controller = new ModelController();
         controller.receiver();
-        controller.readAndSave();
+//        controller.readAndSave();
 
 
     }
