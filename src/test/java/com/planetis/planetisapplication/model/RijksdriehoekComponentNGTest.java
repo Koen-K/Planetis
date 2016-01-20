@@ -45,7 +45,7 @@ public class RijksdriehoekComponentNGTest {
     /**
      * Test of convertToLatLong method, of class RijksdriehoekComponent.
      */
-    @Test(priority=1)
+    @Test(enabled=false)
     public void testConvertToLatLong() {
         System.out.println("convertToLatLong");
         double x = 50.0000;
