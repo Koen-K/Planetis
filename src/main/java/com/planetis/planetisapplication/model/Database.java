@@ -22,16 +22,39 @@ public class Database {
     private final MongoClient mongoClient;
     private final MongoDatabase database;
 
+    MongoCollection<org.bson.Document> collectionP;
+    MongoCollection<org.bson.Document> collectionM;
+    MongoCollection<org.bson.Document> collectionE;
+    MongoCollection<org.bson.Document> collectionC;
+
     public Database() {
         morphia = new Morphia();
         mongoClient = new MongoClient(Properties.dbIp, Properties.dbPort);
 
         database = mongoClient.getDatabase(Properties.dbName);
+        collectionP = database.getCollection("POSITIONS");
+        collectionM = database.getCollection("MONITORING");
+        collectionE = database.getCollection("EVENTS");
+        collectionC = database.getCollection("CONNECTIONS");
+
     }
 
     public void saveDoc(String topic, Document doc) {
-        MongoCollection<org.bson.Document> collection = database.getCollection(topic);
-        collection.insertOne(doc);
+        if("POSITIONS".equals(topic)) {
+            collectionP.insertOne(doc);
+        }
+        else if("MONITORING".equals(topic)) {
+            collectionM.insertOne(doc);
+        }
+        else if("EVENTS".equals(topic)) {
+            collectionE.insertOne(doc);
+        }
+        else if("CONNECTIONS".equals(topic)) {
+            collectionC.insertOne(doc);
+        }
+        else {
+            System.out.println("Helaas pindakaas!");
+        }
     }
 
 }
