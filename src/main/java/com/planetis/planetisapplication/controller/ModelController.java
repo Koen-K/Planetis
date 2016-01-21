@@ -35,24 +35,24 @@ public class ModelController {
     public void readAndSave() {
 
         String topic = "CONNECTIONS";
-//
-//        Connections connection = new Connections();
-//        List<String[]> listConnections = connection.fileToList(Properties.csvFolderPath, topic);
-//
-//        for (String[] row : listConnections) {
-//            Document doc = connection.setAndSplitRowCSV(connection, row);
-//            db.saveDoc(topic, doc);
-//        }
-//
-//        topic = "EVENTS";
-//
-//        Events event = new Events();
-//        List<String[]> listEvents = event.fileToList(Properties.csvFolderPath, topic);
-//
-//        for (String[] row : listEvents) {
-//            Document doc = event.setAndSplitRowCSV(event, row);
-//            db.saveDoc(topic, doc);
-//        }
+
+        Connections connection = new Connections();
+        List<String[]> listConnections = connection.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listConnections) {
+            Document doc = connection.setAndSplitRowCSV(connection, row);
+            db.saveDoc(topic, doc);
+        }
+
+        topic = "EVENTS";
+
+        Events event = new Events();
+        List<String[]> listEvents = event.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listEvents) {
+            Document doc = event.setAndSplitRowCSV(event, row);
+            db.saveDoc(topic, doc);
+        }
 
         topic = "POSITIONS";
 
@@ -64,15 +64,15 @@ public class ModelController {
             db.saveDoc(topic, doc);
         }
 
-//        topic = "MONITORING";
-//
-//        Monitoring monitor = new Monitoring();
-//        List<String[]> listMonitoring = monitor.fileToList(Properties.csvFolderPath, topic);
-//
-//        for (String[] row : listMonitoring) {
-//            Document doc = monitor.setAndSplitRowCSV(monitor, row);
-//            db.saveDoc(topic, doc);
-//        }
+        topic = "MONITORING";
+
+        Monitoring monitor = new Monitoring();
+        List<String[]> listMonitoring = monitor.fileToList(Properties.csvFolderPath, topic);
+
+        for (String[] row : listMonitoring) {
+            Document doc = monitor.setAndSplitRowCSV(monitor, row);
+            db.saveDoc(topic, doc);
+        }
 
     }
 
