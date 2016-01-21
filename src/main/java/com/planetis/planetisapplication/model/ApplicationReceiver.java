@@ -1,45 +1,36 @@
 package com.planetis.planetisapplication.model;
 
-import com.planetis.planetisapplication.dbmodel.Events;
-import com.planetis.planetisapplication.dbmodel.Connections;
-import com.planetis.planetisapplication.dbmodel.Positions;
-import com.planetis.planetisapplication.dbmodel.Monitoring;
-import com.mongodb.connection.Connection;
 import com.planetis.planetisapplication.controller.ModelController;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 
 /**
  * Hello world!
  */
 public class ApplicationReceiver implements MqttCallback {
 
-    private String url = "tcp://145.24.222.106:8883";
-    private String clientId = "Receiving";
-    private String user = "";
-    private String pass = "";
+    private final String url = "tcp://145.24.222.106:8883";
+    private final String clientId = "Receiving";
+    private final String user = "";
+    private final String pass = "";
     private MqttClient client;
     private int connectionRetries = 5;
     private final static Logger LOGGER = LoggerFactory.getLogger(ApplicationReceiver.class);
 
-    private String[] topics = {"POSITIONS", "MONITORING", "EVENTS", "CONNECTIONS"};
+    private final String[] topics = {"POSITIONS", "MONITORING", "EVENTS", "CONNECTIONS"};
 
-    private ModelController controller;
+    private final ModelController controller;
 
     public static void main(String[] args) {
         new ApplicationReceiver().connectAndListen();
-        
-    }
 
+    }
 
     public ApplicationReceiver() {
         this.controller = new ModelController();
     }
-
-  
 
     /**
      * *
@@ -57,7 +48,6 @@ public class ApplicationReceiver implements MqttCallback {
                 try {
                     client.subscribe(topic);
                 } catch (MqttException e) {
-                    e.printStackTrace();
                 }
             }
 
@@ -69,7 +59,6 @@ public class ApplicationReceiver implements MqttCallback {
 //                }
 //            });
         } catch (MqttException e) {
-            e.printStackTrace();
             LOGGER.error("Connection failed." + e.getMessage());
 
         }
@@ -81,6 +70,7 @@ public class ApplicationReceiver implements MqttCallback {
      *
      * @param cause
      */
+    @Override
     public void connectionLost(Throwable cause) {
         LOGGER.error("Connection lost." + cause.getMessage());
 
@@ -90,7 +80,6 @@ public class ApplicationReceiver implements MqttCallback {
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
             connectAndListen();
         }
@@ -102,8 +91,8 @@ public class ApplicationReceiver implements MqttCallback {
      *
      * @param topic the topic where the message originated from.
      * @param message the contents of the actual message
-     * @throws Exception
      */
+    @Override
     public void messageArrived(String topic, MqttMessage message) {
         controller.liveConvertSave(topic, message.toString());
     }
@@ -114,6 +103,7 @@ public class ApplicationReceiver implements MqttCallback {
      *
      * @param token
      */
+    @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
         LOGGER.debug("Delivery complete." + token.toString());
     }

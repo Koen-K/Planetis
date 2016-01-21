@@ -7,7 +7,6 @@ package com.planetis.planetisapplication.dbmodel;
 
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
-import java.text.NumberFormat;
 import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;

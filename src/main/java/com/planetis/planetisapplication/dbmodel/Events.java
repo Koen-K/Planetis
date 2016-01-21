@@ -7,10 +7,8 @@ package com.planetis.planetisapplication.dbmodel;
 
 import com.planetis.planetisapplication.model.BaseEntity;
 import com.planetis.planetisapplication.model.IEntity;
-import java.util.ArrayList;
 import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
 
 /**
  *
@@ -69,7 +67,7 @@ public class Events extends BaseEntity implements IEntity {
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
-        event.setPort((String)row[0].subSequence(index, row[0].indexOf(";", index)));
+        event.setPort((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
 //            System.out.println(row[0].subSequence(index, row[0].length()));

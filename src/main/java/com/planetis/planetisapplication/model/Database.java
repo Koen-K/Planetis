@@ -40,51 +40,17 @@ public class Database {
     }
 
     public void saveDoc(String topic, Document doc) {
-        if("POSITIONS".equals(topic)) {
+        if ("POSITIONS".equals(topic)) {
             collectionP.insertOne(doc);
-        }
-        else if("MONITORING".equals(topic)) {
+        } else if ("MONITORING".equals(topic)) {
             collectionM.insertOne(doc);
-        }
-        else if("EVENTS".equals(topic)) {
+        } else if ("EVENTS".equals(topic)) {
             collectionE.insertOne(doc);
-        }
-        else if("CONNECTIONS".equals(topic)) {
+        } else if ("CONNECTIONS".equals(topic)) {
             collectionC.insertOne(doc);
-        }
-        else {
+        } else {
             System.out.println("Helaas pindakaas!");
         }
     }
 
 }
-//    public void saveLiveMonitoring(Monitoring consumable, String collectionName) {
-//
-//        // map the blog entry to a Mongo DBObject
-//        DBObject connectionsEntryDbObj = morphia.toDBObject(consumable);
-//
-//        // and then save that DBObject in a Mongo collection
-//        db.getCollection(collectionName).save(connectionsEntryDbObj);
-//
-//    }
-//
-//    public void saveLiveConnections(Connections consumable, String collectionName) {
-//
-//        // map the blog entry to a Mongo DBObject
-//        DBObject connectionsEntryDbObj = morphia.toDBObject(consumable);
-//
-//        // and then save that DBObject in a Mongo collection
-//        db.getCollection(collectionName).save(connectionsEntryDbObj);
-//
-//    }
-//
-//    public void saveLiveEvents(Events consumable, String collectionName) {
-//
-//        // map the blog entry to a Mongo DBObject
-//        DBObject connectionsEntryDbObj = morphia.toDBObject(consumable);
-//
-//        // and then save that DBObject in a Mongo collection
-//        db.getCollection(collectionName).save(connectionsEntryDbObj);
-//
-//    }
-

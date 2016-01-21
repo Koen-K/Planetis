@@ -5,7 +5,6 @@
  */
 package com.planetis.planetisapplication.model;
 
-import com.mongodb.MongoClient;
 import com.univocity.parsers.common.processor.RowListProcessor;
 import com.univocity.parsers.csv.CsvParser;
 import com.univocity.parsers.csv.CsvParserSettings;
@@ -15,25 +14,21 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.annotations.Entity;
 
 /**
  *
  * @author Koen
  */
-
 @Entity
 public class BaseEntity {
 
     public RowListProcessor rowProcessor;
     public CsvParserSettings parserSettings;
     public CsvParser parser;
-    
 
     public BaseEntity() {
         // A RowListProcessor stores each parsed row in a List.
@@ -54,11 +49,8 @@ public class BaseEntity {
 
         // creates a parser instance with the given settings
         this.parser = new CsvParser(parserSettings);
-        
-        
+
     }
-
-
 
     public List<String[]> fileToList(String csvFolderPath, String fileName) {
 
