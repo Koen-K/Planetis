@@ -15,7 +15,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 /**
- *
+ * This class is a fat-model and can be used to convert to Documents for MongoDB
+ * 
  * @author Koen
  */
 @Entity("positions")
@@ -181,24 +182,28 @@ public class Positions extends BaseEntity implements IEntity {
         this.quality = quality;
     }
 
+    
+    /**
+     * Receives a row with a topic, splits it and converts it to a Document by calling the createDoc method
+     * 
+     * @param position
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowCSV(Positions position, String[] row) {
 
         int index = 0;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setDateTime((String) row[0]
                 .subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         double rdx = Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         double rdy = Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
@@ -207,79 +212,73 @@ public class Positions extends BaseEntity implements IEntity {
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setSpeed(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setCourse(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setNumSatellites(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         position.setHdop(Integer.parseInt((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].length()));
         position.setQuality((String) row[0].subSequence(index, row[0].length()));
 
         return createDoc(position);
     }
 
+    /**
+     * Receives a row with a MongoDB collection name, splits it and calls createDoc on the return to give a Document
+     * 
+     * @param position
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowLive(Positions position, String row) {
 
         int index = 1;
 
         double rdx = Double.parseDouble((String) row.subSequence(row.indexOf(":") + 2, row.indexOf(",") - 1));
         index = row.indexOf(",", index) + 1;
-//        System.out.println(rdx);
-//        System.out.println(index);
 
         double rdy = Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
-//        System.out.println(rdy);
-//        System.out.println(index);
 
         ArrayList<Double> result = converter.convertToLatLong(rdx, rdy);
         position.setRdx(result.get(0));
         position.setRdy(result.get(1));
 
         position.setSpeed(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
-//        System.out.println(index);
 
         position.setCourse(Double.parseDouble((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
-//        System.out.println(index);
 
         position.setNumSatellites(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
         position.setHdop(Integer.parseInt((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index))));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf(",", index)));
         index = row.indexOf(",", index) + 1;
 
         position.setQuality((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
 
         position.setDateTime((String) row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 2, row.indexOf(",", index) - 1));
         index = row.indexOf(",", index) + 1;
 
         position.setUnitID(Long.parseLong((String) row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index))));
-//        System.out.println(row.subSequence(row.indexOf(":", index) + 1, row.indexOf("}", index)));
-//        index = row.indexOf(",", index) + 1;
 
         return createDoc(position);
     }
 
+    /**
+     * Creates a document of a object from Positions
+     * 
+     * @param position
+     * @return 
+     */
     public Document createDoc(Positions position) {
         Document doc = new Document("DateTime", getDateTime())
                 .append("UnitId", getUnitID())

@@ -52,6 +52,14 @@ public class BaseEntity {
 
     }
 
+    /**
+     * Converts a CSV file to a List of Strings
+     * 
+     * 
+     * @param csvFolderPath
+     * @param fileName
+     * @return 
+     */
     public List<String[]> fileToList(String csvFolderPath, String fileName) {
 
         try {
@@ -62,19 +70,20 @@ public class BaseEntity {
 
         // get the parsed records from the RowListProcessor here.
         // Note that different implementations of RowProcessor will provide different sets of functionalities.
-//        String[] headers = rowProcessor.getHeaders();
-        List<String[]> rows = rowProcessor.getRows();
-//        ArrayList<Connections> list = new ArrayList<>();
-//
-//        for (String[] row : rows) {
-//            list.add((Connections) setAndSplitRow(row));
-//        }
 
-//        System.out.println(Arrays.toString(headers));
-//        System.out.println(rows.size());
+        List<String[]> rows = rowProcessor.getRows();
+
         return rows;
     }
 
+    /**
+     * Gives a reader back
+     * 
+     * @param csvFolderPath
+     * @return
+     * @throws UnsupportedEncodingException
+     * @throws FileNotFoundException 
+     */
     public Reader getReader(String csvFolderPath) throws UnsupportedEncodingException, FileNotFoundException {
         return new InputStreamReader(new FileInputStream(new File(csvFolderPath)), "UTF-8");
     }

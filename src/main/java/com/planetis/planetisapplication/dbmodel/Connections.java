@@ -12,7 +12,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 /**
- *
+ * A fat-model class which converts data to a Document
+ * 
  * @author Koen
  */
 @Entity
@@ -24,6 +25,10 @@ public class Connections extends BaseEntity implements IEntity {
     private String port;
     private int value;
 
+    /**
+     * 
+     * @return 
+     */
     public String getDateTime() {
         return dateTime;
     }
@@ -56,28 +61,38 @@ public class Connections extends BaseEntity implements IEntity {
         this.value = value;
     }
 
+    /**
+     * Receives a row and converts it using the createDoc class
+     * 
+     * @param connection
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowCSV(Connections connection, String[] row) {
 
         int index = 0;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         connection.setDateTime((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         connection.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         connection.setPort((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].length()));
         connection.setValue(Integer.parseInt((String) row[0].subSequence(index, row[0].length())));
 
         return createDoc(connection);
     }
 
+    /**
+     * Receives a row, splits the row and create a Document by calling the createDoc class on the return
+     * 
+     * @param connection
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowLive(Connections connection, String row) {
 
         int index = 1;
@@ -103,6 +118,11 @@ public class Connections extends BaseEntity implements IEntity {
         return createDoc(connection);
     }
 
+    /**
+     * Create a Document from a Connections object
+     * @param connection
+     * @return 
+     */
     public Document createDoc(Connections connection) {
         Document doc = new Document("DateTime", getDateTime())
                 .append("UnitId", getUnitID())

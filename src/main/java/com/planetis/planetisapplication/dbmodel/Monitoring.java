@@ -12,7 +12,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 /**
- *
+ * A fat-model class which is can be used to create a Document to put to MongoDB
+ * 
  * @author Koen
  */
 @Entity
@@ -83,40 +84,48 @@ public class Monitoring extends BaseEntity implements IEntity {
         this.sum = sum;
     }
 
+    
+    /**
+     * Receives a row, splits it and calls the createDoc method on the return
+     * 
+     * @param monitor
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowCSV(Monitoring monitor, String[] row) {
 
         int index = 0;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setDateTime((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setEndTime((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-        //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setType((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-        //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setMin(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-        //            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         monitor.setMax(Double.parseDouble((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].length()));
         monitor.setSum((String) row[0].subSequence(index, row[0].length()));
 
         return createDoc(monitor);
     }
 
+    /**
+     * Receives a row and a MongoDB collection name, splits it and calls createDoc on the return
+     * 
+     * @param monitor
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowLive(Monitoring monitor, String row) {
 
         int index = 1;
@@ -157,6 +166,12 @@ public class Monitoring extends BaseEntity implements IEntity {
         return createDoc(monitor);
     }
 
+    /**
+     * Creates a Document of a Monitoring object
+     * 
+     * @param monitoring
+     * @return 
+     */
     public Document createDoc(Monitoring monitoring) {
         Document doc = new Document("UnitId", getUnitID())
                 .append("BeginTime", getBeginTime())

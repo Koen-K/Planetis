@@ -53,15 +53,7 @@ public class RijksdriehoekComponent implements IRijksdriehoekComponent {
 
         double latitude = referenceWgs84X + (sumN / 3600);
         double longitude = referenceWgs84Y + (sumE / 3600);
-        // Input
-        // x = 122202
-        // y = 487250
-        //
-        // Result
-        // "52.372143838117, 4.90559760435224"
-        //        result = String.Format("{0}, {1}",
-        //                latitude.ToString(CultureInfo.InvariantCulture.NumberFormat),
-        //                longitude.ToString(CultureInfo.InvariantCulture.NumberFormat));
+
         result.add(latitude);
         result.add(longitude);
 

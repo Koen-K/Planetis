@@ -11,7 +11,8 @@ import org.bson.Document;
 import org.mongodb.morphia.annotations.Entity;
 
 /**
- *
+ * A fat-model class which converts data to a Document
+ * 
  * @author Koen
  */
 @Entity
@@ -54,28 +55,39 @@ public class Events extends BaseEntity implements IEntity {
         this.value = value;
     }
 
+    /**
+     * Receives a row, splits it and calls the createDoc on the return
+     * 
+     * @param event
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowCSV(Events event, String[] row) {
 
         int index = 0;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         event.setDateTime((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         event.setUnitID(Long.parseLong((String) row[0].subSequence(index, row[0].indexOf(";", index))));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].indexOf(";", index)));
         event.setPort((String) row[0].subSequence(index, row[0].indexOf(";", index)));
         index = row[0].indexOf(";", index) + 1;
 
-//            System.out.println(row[0].subSequence(index, row[0].length()));
         event.setValue(Integer.parseInt((String) row[0].subSequence(index, row[0].length())));
 
         return createDoc(event);
     }
 
+    
+    /**
+     * Receives a row, splits it and converts it to a Document by calling createDoc on the return
+     * 
+     * @param event
+     * @param row
+     * @return 
+     */
     public Document setAndSplitRowLive(Events event, String row) {
 
         int index = 1;
@@ -101,6 +113,13 @@ public class Events extends BaseEntity implements IEntity {
         return createDoc(event);
     }
 
+    
+    /**
+     * Creates a Document of a Events object
+     * 
+     * @param event
+     * @return 
+     */
     public Document createDoc(Events event) {
         Document doc = new Document("DateTime", getDateTime())
                 .append("UnitId", getUnitID())

@@ -7,6 +7,8 @@ package com.planetis.planetisapplication.resources;
 
 /**
  *
+ * Sets all the properties used in this project
+ * 
  * @author Koen
  */
 public class Properties {

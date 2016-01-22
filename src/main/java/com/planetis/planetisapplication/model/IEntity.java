@@ -6,7 +6,8 @@
 package com.planetis.planetisapplication.model;
 
 /**
- *
+ * 
+ * 
  * @author Koen
  */
 public interface IEntity {

@@ -13,7 +13,9 @@ import org.bson.Document;
 import org.mongodb.morphia.Morphia;
 
 /**
- *
+ * This class makes a database connection when initialized and uses this to save it
+ * 
+ * 
  * @author Koen
  */
 public class Database {
@@ -27,6 +29,9 @@ public class Database {
     MongoCollection<org.bson.Document> collectionE;
     MongoCollection<org.bson.Document> collectionC;
 
+    /**
+     * This constructor makes a database connection when creating the object
+     */
     public Database() {
         morphia = new Morphia();
         mongoClient = new MongoClient(Properties.dbIp, Properties.dbPort);
@@ -38,7 +43,14 @@ public class Database {
         collectionC = database.getCollection("CONNECTIONS");
 
     }
-
+    
+    
+    /**
+     * Saves the Document to the given Collection
+     * @param topic
+     * @param doc 
+     */
+    
     public void saveDoc(String topic, Document doc) {
         if ("POSITIONS".equals(topic)) {
             collectionP.insertOne(doc);
