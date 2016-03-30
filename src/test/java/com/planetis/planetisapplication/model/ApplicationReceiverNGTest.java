@@ -42,7 +42,7 @@ public class ApplicationReceiverNGTest {
     /**
      * Test of main method, of class ApplicationReceiver.
      */
-    @Test
+    @Test(enabled=false)
     public void testMain() {
         System.out.println("main");
         String[] args = null;
@@ -54,7 +54,7 @@ public class ApplicationReceiverNGTest {
     /**
      * Test of connectAndListen method, of class ApplicationReceiver.
      */
-    @Test
+    @Test(enabled=false)
     public void testConnectAndListen() {
         System.out.println("connectAndListen");
         ApplicationReceiver instance = new ApplicationReceiver();
@@ -66,7 +66,7 @@ public class ApplicationReceiverNGTest {
     /**
      * Test of connectionLost method, of class ApplicationReceiver.
      */
-    @Test
+    @Test(enabled=false)
     public void testConnectionLost() {
         System.out.println("connectionLost");
         Throwable cause = null;
@@ -79,7 +79,7 @@ public class ApplicationReceiverNGTest {
     /**
      * Test of messageArrived method, of class ApplicationReceiver.
      */
-    @Test
+    @Test(enabled=false)
     public void testMessageArrived() {
         System.out.println("messageArrived");
         String topic = "";
@@ -93,7 +93,7 @@ public class ApplicationReceiverNGTest {
     /**
      * Test of deliveryComplete method, of class ApplicationReceiver.
      */
-    @Test
+    @Test(enabled=false)
     public void testDeliveryComplete() {
         System.out.println("deliveryComplete");
         IMqttDeliveryToken token = null;

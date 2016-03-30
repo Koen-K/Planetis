@@ -40,31 +40,31 @@ public class ModelControllerNGTest {
     /**
      * Test of readAndSave method, of class ModelController.
      */
-    @Test
+    @Test(enabled=false)
     public void testReadAndSave() {
         System.out.println("readAndSave");
         ModelController instance = new ModelController();
         instance.readAndSave();
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of receiver method, of class ModelController.
      */
-    @Test
+    @Test(enabled=false)
     public void testReceiver() {
         System.out.println("receiver");
         ModelController instance = new ModelController();
         instance.receiver();
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of liveConvertSave method, of class ModelController.
      */
-    @Test
+    @Test(enabled=false)
     public void testLiveConvertSave() {
         System.out.println("liveConvertSave");
         String topic = "";
@@ -72,7 +72,7 @@ public class ModelControllerNGTest {
         ModelController instance = new ModelController();
         instance.liveConvertSave(topic, message);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
     
 }

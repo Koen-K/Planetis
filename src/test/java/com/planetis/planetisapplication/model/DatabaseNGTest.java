@@ -41,7 +41,7 @@ public class DatabaseNGTest {
     /**
      * Test of saveDoc method, of class Database.
      */
-    @Test
+    @Test(enabled=false)
     public void testSaveDoc() {
         System.out.println("saveDoc");
         String topic = "";

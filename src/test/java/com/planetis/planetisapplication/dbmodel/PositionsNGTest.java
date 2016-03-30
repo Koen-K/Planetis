@@ -55,7 +55,7 @@ public class PositionsNGTest {
     /**
      * Test of setDateTime method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetDateTime() {
         System.out.println("setDateTime");
         String dateTime = "";
@@ -68,7 +68,7 @@ public class PositionsNGTest {
     /**
      * Test of getUnitID method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetUnitID() {
         System.out.println("getUnitID");
         Positions instance = new Positions();
@@ -82,7 +82,7 @@ public class PositionsNGTest {
     /**
      * Test of setUnitID method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetUnitID() {
         System.out.println("setUnitID");
         long unitID = 0L;
@@ -95,7 +95,7 @@ public class PositionsNGTest {
     /**
      * Test of getRdx method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetRdx() {
         System.out.println("getRdx");
         Positions instance = new Positions();
@@ -109,7 +109,7 @@ public class PositionsNGTest {
     /**
      * Test of setRdx method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetRdx() {
         System.out.println("setRdx");
         double rdx = 0.0;
@@ -122,7 +122,7 @@ public class PositionsNGTest {
     /**
      * Test of getRdy method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetRdy() {
         System.out.println("getRdy");
         Positions instance = new Positions();
@@ -136,7 +136,7 @@ public class PositionsNGTest {
     /**
      * Test of setRdy method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetRdy() {
         System.out.println("setRdy");
         double rdy = 0.0;
@@ -149,7 +149,7 @@ public class PositionsNGTest {
     /**
      * Test of getSpeed method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetSpeed() {
         System.out.println("getSpeed");
         Positions instance = new Positions();
@@ -163,7 +163,7 @@ public class PositionsNGTest {
     /**
      * Test of setSpeed method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetSpeed() {
         System.out.println("setSpeed");
         int speed = 0;
@@ -176,7 +176,7 @@ public class PositionsNGTest {
     /**
      * Test of getCourse method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetCourse() {
         System.out.println("getCourse");
         Positions instance = new Positions();
@@ -190,7 +190,7 @@ public class PositionsNGTest {
     /**
      * Test of setCourse method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetCourse() {
         System.out.println("setCourse");
         double course = 0;
@@ -203,7 +203,7 @@ public class PositionsNGTest {
     /**
      * Test of getNumSatellites method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetNumSatellites() {
         System.out.println("getNumSatellites");
         Positions instance = new Positions();
@@ -217,7 +217,7 @@ public class PositionsNGTest {
     /**
      * Test of setNumSatellites method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetNumSatellites() {
         System.out.println("setNumSatellites");
         int numSatellites = 0;
@@ -230,7 +230,7 @@ public class PositionsNGTest {
     /**
      * Test of getHdop method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetHdop() {
         System.out.println("getHdop");
         Positions instance = new Positions();
@@ -244,7 +244,7 @@ public class PositionsNGTest {
     /**
      * Test of setHdop method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetHdop() {
         System.out.println("setHdop");
         int hdop = 0;
@@ -271,7 +271,7 @@ public class PositionsNGTest {
     /**
      * Test of setQuality method, of class Positions.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetQuality() {
         System.out.println("setQuality");
         String quality = "";

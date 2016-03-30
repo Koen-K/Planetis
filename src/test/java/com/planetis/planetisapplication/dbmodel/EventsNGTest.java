@@ -58,7 +58,7 @@ public class EventsNGTest {
     /**
      * Test of setDateTime method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetDateTime() {
         System.out.println("setDateTime");
         String dateTime = "";
@@ -71,7 +71,7 @@ public class EventsNGTest {
     /**
      * Test of getUnitID method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetUnitID() {
         System.out.println("getUnitID");
         Events instance = new Events();
@@ -85,7 +85,7 @@ public class EventsNGTest {
     /**
      * Test of setUnitID method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetUnitID() {
         System.out.println("setUnitID");
         long unitID = 0L;
@@ -98,7 +98,7 @@ public class EventsNGTest {
     /**
      * Test of getPort method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetPort() {
         System.out.println("getPort");
         Events instance = new Events();
@@ -112,7 +112,7 @@ public class EventsNGTest {
     /**
      * Test of setPort method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetPort() {
         System.out.println("setPort");
         String port = null;
@@ -125,7 +125,7 @@ public class EventsNGTest {
     /**
      * Test of getValue method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testGetValue() {
         System.out.println("getValue");
         Events instance = new Events();
@@ -139,7 +139,7 @@ public class EventsNGTest {
     /**
      * Test of setValue method, of class Events.
      */
-    @Test
+    @Test(enabled=false)
     public void testSetValue() {
         System.out.println("setValue");
         int value = 0;
@@ -193,7 +193,7 @@ public class EventsNGTest {
     /**
 * Test of createDoc method, of class Events.
 */
-    @Test(priority=1)
+    @Test
     public void testCreateDoc() {
         System.out.println("createDoc");
         Events event = null;
