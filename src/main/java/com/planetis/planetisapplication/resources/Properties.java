@@ -13,7 +13,7 @@ package com.planetis.planetisapplication.resources;
  */
 public class Properties {
 
-    public static String dbIp = "0.0.0.0";
+    public static String dbIp = "145.24.222.106";
     public static String pusherIp = "145.24.222.106";
     public static String pusherPort = "8883";
     public static int dbPort = 27017;
