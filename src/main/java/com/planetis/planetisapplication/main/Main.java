@@ -15,7 +15,7 @@ public class Main {
 
 /**
  * The main method start 2 functions of the program.
- *  - writing a CSV file to MongoDB
+ *  - writing a CSV filee to MongoDB
  *  - receive messages from Docker and write them to MongoDB
  * 
  * @param args 
